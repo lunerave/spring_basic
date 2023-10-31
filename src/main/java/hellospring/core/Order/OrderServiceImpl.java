@@ -9,12 +9,18 @@ import hellospring.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-
     // DIP 원칙을 지키기 위해서 추상체에만 의존하고 구현체에는 의존하지 않도록 수정한다.
     //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
-    private DiscountPolicy discountPolicy;
+
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId);
