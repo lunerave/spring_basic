@@ -12,6 +12,7 @@ import hellospring.core.member.MemoryMemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+//@Configuration이 없다면 스프링 컨테이너가 더 이상 싱글톤을 적용하지 않고 순수 자바 코드 로직으로 프로그램이 작동한다
 @Configuration
 public class AppConfig {
 
