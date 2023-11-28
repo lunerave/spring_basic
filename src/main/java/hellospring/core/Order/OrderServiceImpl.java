@@ -1,5 +1,6 @@
 package hellospring.core.Order;
 
+import hellospring.core.annotation.MainDiscountPolicy;
 import hellospring.core.discount.DiscountPolicy;
 import hellospring.core.discount.FixDiscountPolicy;
 import hellospring.core.discount.RateDiscountPolicy;
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService{
     @Autowired // 생성자가 하나 일때는 생략가능
     //@RequiredArgsConstructor 롬복 사용으로 생성자 생략 가능
     //@Qualifier 사용해서 searched Bean이 2이상일때 기준을 정해줌
-    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("mainDiscountPolicy")*/ DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("mainDiscountPolicy")*/ @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
